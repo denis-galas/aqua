@@ -6,20 +6,21 @@ body {
 
 .navbar {
 	margin-top: 25px;
-/* 	opacity:0.9; */
+	opacity:0.97;
 	border: none;
-	box-shadow: 0 0 15px 5px;
+	box-shadow: 0 0 15px 3px #222;
 }
 
 .content {
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 15px;
-/* 	background: #222222; */
-/* 	color: #FFFFFF; */
-	background: #FFF;
-	color: #222;
-/* 	opacity:0.9; */
-	box-shadow: 0 0 15px 5px;
+	background: #222222;
+	color: #FFFFFF;
+/* 	background: #FFF; */
+/* 	color: #222; */
+	opacity:0.97;
+	box-shadow: 0 0 15px 3px #222;
+	margin-top: 50px;
 }
 
 .home-content {
@@ -29,15 +30,15 @@ body {
 .footer {
 	border-radius: 4px;
 	padding: 15px;
-/* 	background: #222222; */
-/* 	color: #FFFFFF; */
-	background: #FFF;
-	color: #222;
-/* 	opacity:0.9; */
+	background: #222222;
+	color: #FFFFFF;
+/* 	background: #FFF; */
+/* 	color: #222; */
+	opacity:0.97;
 	position:static;
 	bottom:0;
 	margin-top: 20px;
-	box-shadow: 0 0 15px 5px;
+	box-shadow: 0 0 15px 3px #222;
 }
 
 #contactModal .modal-content {
