@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="container">
-		<nav role="navigation" class="navbar navbar-inverse">
+		<nav role="navigation" class="navbar navbar-default">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button data-target="#bs-example-navbar-collapse-9" data-toggle="collapse" class="navbar-toggle" type="button">
