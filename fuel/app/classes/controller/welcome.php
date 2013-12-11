@@ -19,7 +19,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Welcome extends Controller
+class Controller_Welcome extends Controller_Template
 {
 
 	/**
@@ -30,19 +30,20 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_index()
 	{
-		return Response::forge(View::forge('welcome/index'));
+		$this->template->title = 'Главная';
+		$this->template->content = View::forge("welcome/index", array(), false);
 	}
-
-	/**
-	 * A typical "Hello, Bob!" type example.  This uses a ViewModel to
-	 * show how to use them.
-	 *
-	 * @access  public
-	 * @return  Response
-	 */
-	public function action_hello()
+	
+	public function action_prices()
 	{
-		return Response::forge(ViewModel::forge('welcome/hello'));
+		$this->template->title = 'Прайсы';
+		$this->template->content = View::forge("welcome/prices", array(), false);
+	}
+	
+	public function action_contacts()
+	{
+		$this->template->title = 'Контакты';
+		$this->template->content = View::forge("welcome/contacts", array(), false);
 	}
 
 	/**
@@ -53,6 +54,8 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('welcome/404'), 404);
+		$this->template->title = '';
+		$this->template->content = View::forge("welcome/404", array(), false);
+// 		return Response::forge(ViewModel::forge('welcome/404'), 404);
 	}
 }
