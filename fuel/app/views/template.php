@@ -41,10 +41,44 @@
 		<div class="footer">
 			<div class="pull-right">Copyright (c) 2013</div>
 			<address>
-				<abbr title="Телефон">Т:</abbr> (123) 456-7890<br>
-				<abbr title="Телефон">Т:</abbr> (123) 456-7890
+				Тел. (123) 456-7890<br>
+				Тел. (123) 456-7890
 			</address>
 		</div>
+	</div>
+	
+	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="contactModalLabel">Написать нам</h4>
+				</div>
+				<div class="modal-body">
+					<form accept-charset="utf-8" class="form-horizontal" id="form_contact" method="post" action="#">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Тема</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail3">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">Сообщение</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="5"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label"></label>
+							<div class="col-sm-10">
+								<input type="submit" id="form_submit" value="Отправить" name="submit" class="btn btn-primary">
+								<button name="cancel" data-dismiss="modal" class="btn">Закрыть</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div>
 </body>
 </html>
