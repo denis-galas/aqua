@@ -1,18 +1,25 @@
 @CHARSET "US-ASCII";
 
+html, body {
+	height: 100%;	
+}
+
 body {
-	background: #191a14 url('../img/sea-aquarium-background.jpg') no-repeat;
+/* 	background: #191a14 url('../img/sea-aquarium-background.jpg') no-repeat; */
+	background: #191a14 url('../img/1352446.jpg') no-repeat;
+/* 	background: #191a14 url('../img/1352446.jpg') no-repeat; */
 }
 
 .navbar {
-	margin-top: 25px;
+/* 	margin-top: 25px; */
 	opacity:0.97;
 	border: none;
 	box-shadow: 0 0 15px 3px #222;
+	border-radius: 0px 0px 4px 4px;
 }
 
 .content {
-	border-radius: 10px;
+	border-radius: 4px;
 	padding: 15px;
 	background: #222222;
 	color: #FFFFFF;
@@ -27,20 +34,40 @@ body {
 	text-align: justify;
 }
 
-.footer {
-	border-radius: 4px;
+#footer .container .foot-inside {
+	border-radius: 4px 4px 0px 0px;
 	padding: 15px;
 	background: #222222;
 	color: #FFFFFF;
 /* 	background: #FFF; */
 /* 	color: #222; */
 	opacity:0.97;
-	position:static;
-	bottom:0;
+/* 	position:static; */
+/* 	bottom:0; */
 	margin-top: 20px;
 	box-shadow: 0 0 15px 3px #222;
+	height: 100px;
+}
+
+#footer {
+	padding: 0px 15px;
 }
 
 #contactModal .modal-content {
 	color: #222222 !important;
+}
+
+#wrap {
+    height: auto;
+    margin-bottom: -120px;
+    min-height: 100%;
+    padding: 0 0 120px;
+}
+
+.nav .active a, .nav .active a:hover, .nav .active a:focus {
+    box-shadow: 0 3px 7px #111 inset !important;
+}
+
+.nav a:hover, .nav a:focus {
+    box-shadow: 0 1px 3px #1D1D1D inset !important;
 }
