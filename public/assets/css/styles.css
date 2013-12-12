@@ -72,7 +72,7 @@ body {
 
 .nav .active a, .nav .active a:hover, .nav .active a:focus {
     box-shadow: 0 3px 7px #444 inset !important;
-/*     background: #79e4ff !important; */
+    background: #4686ac !important;
 }
 
 .nav a:hover, .nav a:focus {
