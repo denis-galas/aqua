@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="/" class="navbar-brand">Brand</a>
+					<a href="/" class="navbar-brand"><?php echo Asset::img('home-hover.png', array())?></a>
 				</div>
 	
 				<?php $active_url = \Request::active()->route->translation;?>
@@ -43,6 +43,7 @@
 	</div>
 		
 	<div id="footer">
+		<hr/>
 		<div class="container">
 			<div class="foot-inside">
 				<div class="pull-right">Copyright (c) 2013</div>

@@ -6,27 +6,28 @@ html, body {
 
 body {
 /* 	background: #191a14 url('../img/sea-aquarium-background.jpg') no-repeat; */
-	background: #191a14 url('../img/1352446.jpg') no-repeat;
 /* 	background: #191a14 url('../img/1352446.jpg') no-repeat; */
+	background: #fff url('../img/bg-gradient-4.jpg') no-repeat;
+	background-position:center top;
 }
 
 .navbar {
 /* 	margin-top: 25px; */
 	opacity:0.97;
 	border: none;
-	box-shadow: 0 0 15px 3px #222;
+	box-shadow: 0 0 15px 3px #999;
 	border-radius: 0px 0px 4px 4px;
 }
 
 .content {
 	border-radius: 4px;
 	padding: 15px;
-	background: #222222;
-	color: #FFFFFF;
-/* 	background: #FFF; */
-/* 	color: #222; */
+/* 	background: #222222; */
+/* 	color: #FFFFFF; */
+	background: #fff url("../img/content-bottom-bg.png") repeat-x scroll 0 0 ;
+	color: #222;
 	opacity:0.97;
-	box-shadow: 0 0 15px 3px #222;
+	box-shadow: 0 0 15px 3px #999;
 	margin-top: 50px;
 }
 
@@ -35,22 +36,23 @@ body {
 }
 
 #footer .container .foot-inside {
-	border-radius: 4px 4px 0px 0px;
+/* 	border-radius: 4px 4px 0px 0px; */
 	padding: 15px;
-	background: #222222;
-	color: #FFFFFF;
+/* 	background: #222222; */
+/* 	color: #FFFFFF; */
 /* 	background: #FFF; */
-/* 	color: #222; */
-	opacity:0.97;
+	color: #222;
+/* 	opacity:0.97; */
 /* 	position:static; */
 /* 	bottom:0; */
-	margin-top: 20px;
-	box-shadow: 0 0 15px 3px #222;
+/* 	margin-top: 20px; */
+/* 	box-shadow: 0 0 15px 3px #999; */
 	height: 100px;
 }
 
 #footer {
 	padding: 0px 15px;
+	margin-top: 50px;
 }
 
 #contactModal .modal-content {
@@ -59,15 +61,20 @@ body {
 
 #wrap {
     height: auto;
-    margin-bottom: -120px;
+    margin-bottom: -171px;
     min-height: 100%;
-    padding: 0 0 120px;
+    padding: 0 0 171px;
+}
+
+#wrap .container {
+    min-height: 100%;
 }
 
 .nav .active a, .nav .active a:hover, .nav .active a:focus {
-    box-shadow: 0 3px 7px #111 inset !important;
+    box-shadow: 0 3px 7px #444 inset !important;
+/*     background: #79e4ff !important; */
 }
 
 .nav a:hover, .nav a:focus {
-    box-shadow: 0 1px 3px #1D1D1D inset !important;
+    box-shadow: 0 1px 3px #444 inset !important;
 }
