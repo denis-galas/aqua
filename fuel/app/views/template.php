@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Аквариумистика - <?php echo $title?></title>
 	<?php echo Asset::css('bootstrap.min.css'); ?>
-	<?php echo Asset::css('bootstrap-theme.min.css'); ?>
+	<?php //echo Asset::css('bootstrap-theme.min.css'); ?>
 	<?php echo Asset::css('styles.css'); ?>
 	
 	<?php echo Asset::js('jquery-1.10.2.min.js'); ?>

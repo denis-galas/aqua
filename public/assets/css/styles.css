@@ -17,6 +17,7 @@ body {
 	border: none;
 	box-shadow: 0 0 15px 3px #999;
 	border-radius: 0px 0px 4px 4px;
+	background-image: linear-gradient(to bottom, #3C3C3C 0px, #222222 100%);
 }
 
 .content {
@@ -70,9 +71,9 @@ body {
     min-height: 100%;
 }
 
-.nav .active a, .nav .active a:hover, .nav .active a:focus {
+.nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
     box-shadow: 0 3px 7px #444 inset !important;
-    background: #4686ac !important;
+    background: none repeat scroll 0 0 #4686AC !important;
 }
 
 .nav a:hover, .nav a:focus {
