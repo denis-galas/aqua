@@ -32,9 +32,57 @@
 						<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
 						<li <?php if(stripos($active_url,'prices') !== false) echo "class='active'"?>><a href="/prices">Прайсы</a></li>
 						<li <?php if(stripos($active_url,'contacts') !== false) echo "class='active'"?>><a href="/contacts">Контакты</a></li>
+						<?php if (Auth::check()):?>
+						<li class="dropdown">
+			              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Администратор <b class="caret"></b></a>
+			              <ul class="dropdown-menu">
+			                <li class="dropdown-header">Управление:</li>
+<!-- 			                <li><a href="#">Контактами</a></li> -->
+			                <li><a href="#">Прайсами</a></li>
+			                <li <?php if(stripos($active_url,'admin/slides') !== false) echo "class='active'"?>><a href="/admin/slides">Слайдшоу</a></li>
+			                <li <?php if(stripos($active_url,'admin/categories') !== false) echo "class='active'"?>><a href="/admin/categories">Категориями</a></li>
+			                <li><a href="#">Галлереей</a></li>
+			                <li class="divider"></li>
+			                <li><a href="/admin/logout">Выход</a></li>
+			              </ul>
+			            </li>
+						<?php endif;?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
+				
+				<?php 
+				$slides = Model_Slide::find('all');
+				if (count($slides > 0)):
+				?>
+				<div data-ride="carousel" class="carousel slide" id="carousel-slide">
+					<ol class="carousel-indicators">
+						<?php $i = 0; foreach ($slides as $slide):?>
+						<li class="<?php echo $i == 0 ? 'active' : ''?>" data-slide-to="<?php echo $i?>" data-target="#carousel-slide"></li>
+						<?php $i++; endforeach;?>
+					</ol>
+					<div class="carousel-inner">
+						<?php $i = 0; foreach ($slides as $slide):?>
+						<div class="item <?php echo $i == 0 ? 'active' : ''?>">
+							<?php echo Asset::img('slides/'.$slide->source, array())?>
+							<div class="carousel-caption">
+								<h3><?php echo $slide->title?></h3>
+								<p><?php echo $slide->description?></p>
+							</div>
+						</div>
+						<?php $i++; endforeach;?>
+					</div>
+					<a data-slide="prev" href="#carousel-slide" class="left carousel-control">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a data-slide="next" href="#carousel-slide" class="right carousel-control">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div>
+				<?php endif;?>
 			</nav>
+			
+			
+						
 			
 			<div class="raw content">
 				<?php echo $content; ?>

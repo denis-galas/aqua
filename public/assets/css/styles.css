@@ -4,6 +4,14 @@ html, body {
 	height: 100%;	
 }
 
+.container {
+	width: 1170px !important;
+}
+
+.clear {
+	clear: both;
+}
+
 body {
 /* 	background: #191a14 url('../img/sea-aquarium-background.jpg') no-repeat; */
 /* 	background: #191a14 url('../img/1352446.jpg') no-repeat; */
@@ -14,11 +22,11 @@ body {
 
 .navbar {
 /* 	margin-top: 25px; */
-	opacity:0.97;
 	border: none;
 	box-shadow: 0 0 15px 3px #999;
 	border-radius: 0px 0px 4px 4px;
 	background-image: linear-gradient(to bottom, #3C3C3C 0px, #222222 100%);
+	margin-bottom: 0px;
 }
 
 .content {
@@ -32,6 +40,15 @@ body {
 	box-shadow: 0 0 15px 3px #999;
 	margin-top: 50px;
 }
+
+#carousel-slide {
+	margin-bottom: 4px;
+}
+
+.mini-slide {
+	height: 90px;
+	width: 234px;
+} 
 
 .home-content {
 	text-align: justify;
@@ -79,4 +96,8 @@ body {
 
 .nav a:hover, .nav a:focus {
     box-shadow: 0 1px 3px #444 inset !important;
+}
+
+.login-form {
+	width: 500px;
 }

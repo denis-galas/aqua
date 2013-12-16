@@ -11,6 +11,12 @@ require COREPATH.'bootstrap.php';
 Autoloader::add_classes(array(
 	// Add classes you want to override here
 	// Example: 'View' => APPPATH.'classes/view.php',
+	'Orm\\Observer_GenerateSaltAndPassword' => APPPATH.'classes/observer/Observer_GenerateSaltAndPassword.php',
+	'BaseForm' => APPPATH.'classes/form/base/base_form.php',
+	'AdminRegisterForm' => APPPATH.'classes/form/admin_register.php',
+	'AdminLoginForm' => APPPATH.'classes/form/admin_login.php',
+	'AdminCategoryForm' => APPPATH.'classes/form/admin_category.php',
+	'AdminSlideForm' => APPPATH.'classes/form/admin_slide.php',
 ));
 
 // Register the autoloader
