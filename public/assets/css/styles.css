@@ -7,7 +7,8 @@ html, body {
 body {
 /* 	background: #191a14 url('../img/sea-aquarium-background.jpg') no-repeat; */
 /* 	background: #191a14 url('../img/1352446.jpg') no-repeat; */
-	background: #f3f3f3 url('../img/bg-gradient-5.jpg') no-repeat;
+/* 	background: #f3f3f3 url('../img/bg-gradient-5.jpg') no-repeat; */
+	background: #4686AC;
 	background-position:center top;
 }
 
@@ -42,7 +43,7 @@ body {
 /* 	background: #222222; */
 /* 	color: #FFFFFF; */
 /* 	background: #FFF; */
-	color: #222;
+	color: #FFFFFF;
 /* 	opacity:0.97; */
 /* 	position:static; */
 /* 	bottom:0; */
