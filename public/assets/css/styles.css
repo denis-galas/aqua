@@ -101,3 +101,16 @@ body {
 .login-form {
 	width: 500px;
 }
+
+#gallery .gallery-item {
+    display: inline;
+    margin: 0 44px 25px 44px;
+    margin-bottom: 40px;
+    float: left;
+    width: 282px;
+    border: 1px solid #EEEEEE;
+}
+
+#gallery .gallery-item:hover {
+	background: #DDD;	
+}

@@ -11,6 +11,14 @@ class Model_Gallery extends Orm\Model
 			)
 			, 'source'
 			);
+	protected static $_belongs_to = array(
+			'fcategory' => array(
+					'key_from' => 'category',
+					'model_to' => 'Model_Fcategory',
+					'key_to' => 'id',
+        			'cascade_delete' => false,
+			)
+	);
 
 	/**
 	 * this function retrieve user object by given field
@@ -30,5 +38,19 @@ class Model_Gallery extends Orm\Model
 		$query = self::query()->where($field, $value);
 	
 		return (bool) $query->count();
+	}
+	
+	public static function removeByCategory($category)
+	{
+		self::query()->where('category', $category)->delete();
+	}
+	
+	public static function getBySort($sort = 'all')
+	{
+		if ($sort == 'all') {
+			return self::find('all', array('related' => array('fcategory')));
+		} else {
+			return self::query()->related('fcategory')->where('category', $sort)->get();
+		}
 	}
 }

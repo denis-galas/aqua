@@ -17,6 +17,8 @@ Autoloader::add_classes(array(
 	'AdminLoginForm' => APPPATH.'classes/form/admin_login.php',
 	'AdminCategoryForm' => APPPATH.'classes/form/admin_category.php',
 	'AdminSlideForm' => APPPATH.'classes/form/admin_slide.php',
+	'AdminGalleryForm' => APPPATH.'classes/form/admin_gallery.php',
+	'AdminPriceForm' => APPPATH.'classes/form/admin_price.php',
 ));
 
 // Register the autoloader

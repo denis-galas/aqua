@@ -154,8 +154,11 @@ class Controller_Admin extends Controller_Template
 		}
 		
 		$id = Input::get('id');
+		Model_Gallery::removeByCategory($id);
 		$category = Model_Fcategory::find($id);
 		$category->delete();
+		
+		Session::delete('category_sort');
 		
 		Response::redirect('admin/categories');
 	}
@@ -195,10 +198,16 @@ class Controller_Admin extends Controller_Template
 				if (Upload::is_valid() || Input::post('source') == $slide->source)
 				{
 					// save them according to the config
-					if (Input::post('source') != $slide->source || !Input::get('edit')) {
+					$old_source = $slide->source;
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
 						Upload::save();
 						
 						$files = Upload::get_files();
+						
+						if (Input::post('source') != $slide->source && Input::get('edit')) {
+							unlink(DOCROOT.'assets/img/slides/'.$slide->source);
+							unlink(DOCROOT.'assets/img/slides/thumbs/'.$slide->source);
+						}
 						
 						$o_width = 1170;
 						$o_height = 450;
@@ -212,7 +221,7 @@ class Controller_Admin extends Controller_Template
 				
 					$fields = $form->validated();
 					$slide->from_array($fields);
-					if (Input::post('source') != $slide->source || !Input::get('edit')) {
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
 						$slide->source = $files[0]['saved_as'];
 					}
 					$slide->save();
@@ -254,5 +263,182 @@ class Controller_Admin extends Controller_Template
 		$slide->delete();
 	
 		Response::redirect('admin/slides');
+	}
+	
+	public function action_gallery()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+		
+		if (!Session::get('category_sort')) {		
+			Session::set('category_sort', 'all');
+		}
+		if (Input::get('category_sort')) {
+			Session::set('category_sort', Input::get('category_sort'));
+		}
+		
+		$this->template->title = 'Управление слайдшоу';
+		
+		$gallery = new Model_Gallery();
+		$form = new AdminGalleryForm();
+		$form = $form->getForm();
+		
+		if (Input::method() == 'POST') {
+			$form->validation()->run();
+			// if validated, login the user
+			if (!$form->validation()->error())
+			{
+				$config = array(
+						'path' => DOCROOT.'assets/img/gallery',
+						'randomize' => true,
+						'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
+				);
+		
+				Upload::process($config);
+		
+		
+				if (Upload::is_valid())
+				{
+					// save them according to the config
+					Upload::save();
+
+					$files = Upload::get_files();
+
+					$o_width = 1024;
+					$o_height = 768;
+					$t_width = 280;
+					$t_height = 210;
+					$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
+					$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
+					Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
+					Image::load($filepath)->resize($t_width, $t_height, false)->save($thumb_files);
+		
+					$fields = $form->validated();
+					$gallery->from_array($fields);
+					$gallery->source = $files[0]['saved_as'];
+					$gallery->save();
+		
+					Session::set_flash('success', 'Фото успешно добавлено!');
+					
+					Response::redirect('admin/gallery');
+				} else {
+					foreach (Upload::get_errors() as $file)
+					{
+						$error = $file['errors'][0]['message'];
+					}
+					Session::set_flash('error', $error);
+				}
+			}
+		}
+		
+		$photos = Model_Gallery::getBySort(Session::get('category_sort'));
+		
+		$this->template->content = View::forge("admin/gallery", array(
+				'form' => $form,
+				'photos' => $photos,
+		), false);
+	}
+	
+	public function action_photoDelete()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+	
+		$id = Input::get('id');
+		$slide = Model_Gallery::find($id);
+		unlink(DOCROOT.'assets/img/gallery/'.$slide->source);
+		unlink(DOCROOT.'assets/img/gallery/thumbs/'.$slide->source);
+	
+		$slide->delete();
+	
+		Response::redirect('admin/gallery');
+	}
+	
+	public function action_prices()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+		$this->template->title = 'Управление прайсами';
+	
+		if (Input::get('edit')) {
+			$price = Model_Price::find(Input::get('id'));
+		}
+		if (!isset($price) || !$price) {
+			$price = new Model_Price();
+		}
+	
+		$form = new AdminPriceForm();
+		$form = $form->getForm();
+		$form->populate($price, true);
+	
+		if (Input::method() == 'POST') {
+			$form->validation()->run();
+			// if validated, login the user
+			if (!$form->validation()->error())
+			{
+				$config = array(
+						'path' => DOCROOT.'assets/prices',
+						'randomize' => false
+				);
+	
+				Upload::process($config);
+	
+				if (Upload::is_valid() || Input::post('source') == $price->source)
+				{
+					// save them according to the config
+					$old_source = $price->source;
+					$fields = $form->validated();
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
+						Upload::save();
+						$files = Upload::get_files();
+						
+						if (Input::post('source') != $price->source && Input::get('edit')) {
+							unlink(DOCROOT.'assets/prices/'.$price->source);
+						}
+					}
+					$price->from_array($fields);
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
+						$price->source = $files[0]['saved_as'];
+					}
+					$price->save();
+	
+					if (!Input::get('edit')) {
+						Session::set_flash('success', 'Прайс добавлен успешно!');
+					} else {
+						Session::set_flash('success', 'Прайс изменен успешно!');
+					}
+					Response::redirect('admin/prices');
+				} else {
+					foreach (Upload::get_errors() as $file)
+					{
+						$error = $file['errors'][0]['message'];
+					}
+					Session::set_flash('error', $error);
+				}
+			}
+		}
+	
+		$prices = Model_Price::find('all');
+		$this->template->content = View::forge("admin/prices", array(
+				'form' => $form,
+				'prices' => $prices,
+		), false);
+	}
+	
+	public function action_priceDelete()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+	
+		$id = Input::get('id');
+		$price = Model_Price::find($id);
+		unlink(DOCROOT.'assets/prices/'.$price->source);
+		$price->delete();
+	
+		Response::redirect('admin/prices');
 	}
 }

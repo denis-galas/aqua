@@ -5,6 +5,7 @@ return array(
 	
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 	'prices'   => 'welcome/prices',
+	'gallery/:category'   => 'welcome/gallery',		
 	'contacts'   => 'welcome/contacts',
 		
 	'admin'   => 'admin/login',

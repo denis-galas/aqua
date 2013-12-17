@@ -37,13 +37,27 @@ class Controller_Welcome extends Controller_Template
 	public function action_prices()
 	{
 		$this->template->title = 'Прайсы';
-		$this->template->content = View::forge("welcome/prices", array(), false);
+		$prices = Model_Price::find('all');
+		
+		$this->template->content = View::forge("welcome/prices", array(
+			'prices' => $prices,		
+		), false);
 	}
 	
 	public function action_contacts()
 	{
 		$this->template->title = 'Контакты';
 		$this->template->content = View::forge("welcome/contacts", array(), false);
+	}
+	
+	public function action_gallery()
+	{
+		$this->template->title = 'Галлерея';
+		$photos = Model_Gallery::getBySort($this->param('category', 'all'));
+		
+		$this->template->content = View::forge("welcome/gallery", array(
+			'photos' => $photos,		
+		), false);
 	}
 
 	/**

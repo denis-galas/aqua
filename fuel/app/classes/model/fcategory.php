@@ -8,6 +8,13 @@ class Model_Fcategory extends Orm\Model
 	protected static $_properties = array (
 			'id', 'title', 'description'
 			);
+	protected static $_has_many = array(
+			'fcategory' => array(
+					'key_from' => 'id',
+					'model_to' => 'Model_Gallery',
+					'key_to' => 'category',
+			)
+	);
 
 	/**
 	 * this function retrieve user object by given field
@@ -28,4 +35,19 @@ class Model_Fcategory extends Orm\Model
 	
 		return (bool) $query->count();
 	}
+	
+	public static function returnArray($empty = false)
+	{
+		$categories = self::find('all');
+		
+		$cat_arr = array();
+		if ($empty) {
+			$cat_arr['all'] = 'Все категории';
+		}
+		foreach ($categories as $category) {
+			$cat_arr[$category->id] = $category->title;  
+		}
+		
+		return $cat_arr;
+	} 
 }

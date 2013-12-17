@@ -5,4 +5,6 @@ fuel/app/logs/*/*/*
 fuel/app/cache/*/*
 fuel/app/config/db.php
 public/assets/img/slides
+public/assets/img/gallery
+public/assets/prices
 fuel/app/config/development/migrations.php
