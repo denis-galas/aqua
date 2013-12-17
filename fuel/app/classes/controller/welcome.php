@@ -54,9 +54,15 @@ class Controller_Welcome extends Controller_Template
 	{
 		$this->template->title = 'Галлерея';
 		$photos = Model_Gallery::getBySort($this->param('category', 'all'));
+		$category = '';
+		if ($this->param('category', 'all') != 'all') {
+			$category = Model_Fcategory::find($this->param('category'));
+			$category = $category->title;
+		}
 		
 		$this->template->content = View::forge("welcome/gallery", array(
-			'photos' => $photos,		
+			'photos' => $photos,
+			'category' => $category,		
 		), false);
 	}
 

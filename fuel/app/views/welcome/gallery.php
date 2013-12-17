@@ -1,6 +1,12 @@
 <?php echo Asset::css('lightbox.css'); ?>
 <?php echo Asset::js('lightbox.js'); ?>
 
+<?php if (count($photos) == 0):?>
+<h4 style="text-align: center;">В этой категории еще нет фотографий</h4>
+<?php else:?>
+<h4 style="text-align: center;"><?php echo $category?></h4>
+<?php endif;?>
+
 <div id="gallery">
 	<?php foreach ($photos as $photo):?>
 	<div class="gallery-item">

@@ -25,7 +25,11 @@
 					<a href="/" class="navbar-brand"><?php echo Asset::img('home-hover.png', array())?></a>
 				</div>
 	
-				<?php $active_url = \Request::active()->route->translation;?>
+				<?php $active_url = \Request::active()->route->translation;
+				if ($active_url == 'welcome/gallery') {
+					$active_url .= '/'.Request::active()->route->named_params['category'];
+				}
+				?>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
@@ -37,7 +41,7 @@
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Галлерея <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<?php foreach ($categories as $id => $category):?>
-								<li <?php if(stripos($active_url.'/'.Request::active()->route->named_params['category'],'welcome/gallery/'.$id) !== false) echo "class='active'"?>><a href="/gallery/<?php echo $id?>"><?php echo $category?></a></li>
+								<li <?php if(stripos($active_url,'welcome/gallery/'.$id) !== false) echo "class='active'"?>><a href="/gallery/<?php echo $id?>"><?php echo $category?></a></li>
 								<?php endforeach;?>
 							</ul>
 						</li>
