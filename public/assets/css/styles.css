@@ -114,3 +114,7 @@ body {
 #gallery .gallery-item:hover {
 	background: #DDD;	
 }
+
+#gallery .gallery-item a:hover {
+	text-decoration: none;
+}

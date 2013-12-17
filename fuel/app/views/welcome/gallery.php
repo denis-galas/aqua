@@ -2,7 +2,6 @@
 <?php echo Asset::js('lightbox.js'); ?>
 
 <div id="gallery">
-	<?php for ($i = 0; $i < 10; $i++):?>
 	<?php foreach ($photos as $photo):?>
 	<div class="gallery-item">
 		<a title="<?php echo $photo->title?>" href="/assets/img/gallery/<?php echo $photo->source?>">
@@ -11,7 +10,6 @@
 		</a>
 	</div>
 	<?php endforeach;?>
-	<?php endfor;?>
 </div>
 
 <div class="clear"></div>
