@@ -35,6 +35,8 @@ class AdminSlideForm extends BaseForm {
 				array('type' => 'file')
 		);
 		
+		$val = Validation::instance('slideform');
+		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
 		
 		$this->form = $form;
 	}

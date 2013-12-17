@@ -36,6 +36,8 @@ class AdminGalleryForm extends BaseForm {
 				array('type' => 'file')
 		);
 		
+		$val = Validation::instance('galleryform');
+		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
 		
 		$this->form = $form;
 	}

@@ -20,6 +20,9 @@ class AdminLoginForm extends BaseForm {
 				array('type' => 'password', 'class' => 'form-control')
 		)->add_rule('required');
 		
+		$val = Validation::instance('loginform');
+		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
+		
 		$this->form = $form;
 	}
 }

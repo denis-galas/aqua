@@ -25,6 +25,9 @@ class AdminCategoryForm extends BaseForm {
 				array('type' => 'textarea', 'class' => 'form-control')
 		)->add_rule('max_length', 5000);
 		
+		$val = Validation::instance('categoryform');
+		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
+		
 		$this->form = $form;
 	}
 }
