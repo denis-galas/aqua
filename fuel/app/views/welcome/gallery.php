@@ -1,14 +1,15 @@
 <?php echo Asset::css('lightbox.css'); ?>
 <?php echo Asset::js('lightbox.js'); ?>
 
-<?php if (count($photos) == 0):?>
-<h4 style="text-align: center;">В этой категории еще нет фотографий</h4>
-<?php else:?>
+<?php if (count($photos) > 0):?>
 <h4 style="text-align: center;"><?php echo $category->title?></h4>
 <p style="text-align: center;"><?php echo $category->description?></p>
 <?php endif;?>
 
 <div id="gallery">
+	<?php if (count($photos) == 0):?>
+		<h4 style="text-align: center;">В этой категории еще нет фотографий</h4>
+	<?php endif;?>
 	<?php foreach ($photos as $photo):?>
 	<div class="gallery-item">
 		<a title="<?php echo $photo->title?>" href="/assets/img/gallery/<?php echo $photo->source?>">

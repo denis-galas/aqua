@@ -63,7 +63,7 @@ class Model_Admin extends Orm\Model
 	public static function checkIfLoginValid($username, $password) {
 		$user = self::getRecord('username', $username);
 		if (!$user) {
-			return 'Адмни с таким логином не существует!';
+			return 'Админ с таким логином не существует!';
 		}
 	
 		$hash_pass = md5($user->salt.$password);
