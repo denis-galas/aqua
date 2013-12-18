@@ -280,9 +280,16 @@ class Controller_Admin extends Controller_Template
 		
 		$this->template->title = 'Управление слайдшоу';
 		
-		$gallery = new Model_Gallery();
+// 		$gallery = new Model_Gallery();
+		if (Input::get('edit')) {
+			$gallery = Model_Gallery::find(Input::get('id'));
+		}
+		if (!isset($gallery) || !$gallery) {
+			$gallery = new Model_Gallery();
+		}
 		$form = new AdminGalleryForm();
 		$form = $form->getForm();
+		$form->populate($gallery, true);
 		
 		if (Input::method() == 'POST') {
 			$form->validation()->run();
@@ -297,29 +304,41 @@ class Controller_Admin extends Controller_Template
 		
 				Upload::process($config);
 		
-		
-				if (Upload::is_valid())
+				if (Upload::is_valid() || Input::post('source') == $gallery->source)
 				{
-					// save them according to the config
-					Upload::save();
-
-					$files = Upload::get_files();
-
-					$o_width = 1024;
-					$o_height = 768;
-					$t_width = 280;
-					$t_height = 210;
-					$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
-					$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
-					Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
-					Image::load($filepath)->resize($t_width, $t_height, false)->save($thumb_files);
-		
+					$old_source = $gallery->source;
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
+						Upload::save();
+					
+						$files = Upload::get_files();
+					
+						if (Input::post('source') != $gallery->source && Input::get('edit')) {
+							unlink(DOCROOT.'assets/img/gallery/'.$gallery->source);
+							unlink(DOCROOT.'assets/img/gallery/thumbs/'.$gallery->source);
+						}
+					
+						$o_width = 1024;
+						$o_height = 768;
+						$t_width = 280;
+						$t_height = 210;
+						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
+						$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
+						Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
+						Image::load($filepath)->resize($t_width, $t_height, false)->save($thumb_files);
+					}
+					
 					$fields = $form->validated();
 					$gallery->from_array($fields);
-					$gallery->source = $files[0]['saved_as'];
+					if (Input::post('source') != $old_source || !Input::get('edit')) {
+						$gallery->source = $files[0]['saved_as'];
+					}
 					$gallery->save();
 		
-					Session::set_flash('success', 'Фото успешно добавлено!');
+					if (!Input::get('edit')) {
+						Session::set_flash('success', 'Фото успешно добавлено!');
+					} else {
+						Session::set_flash('success', 'Фото изменено успешно!');
+					}
 					
 					Response::redirect('admin/gallery');
 				} else {

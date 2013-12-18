@@ -15,7 +15,7 @@ class AdminPriceForm extends BaseForm {
 		);
 		
 		$form->add(
-				'source', 'Слайд',
+				'source', 'Файл',
 				array('type' => 'hidden')
 		)->add_rule('required');
 		
@@ -37,6 +37,7 @@ class AdminPriceForm extends BaseForm {
 		
 		$val = Validation::instance('priceform');
 		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
+		$val->set_message('max_length', 'Максимально допустимая длина поля :label :param:1 символов!');
 		
 		$this->form = $form;
 	}

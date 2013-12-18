@@ -38,6 +38,7 @@ class AdminGalleryForm extends BaseForm {
 		
 		$val = Validation::instance('galleryform');
 		$val->set_message('required', 'Поле :label пустое! Пожалуйста заполните его');
+		$val->set_message('max_length', 'Максимально допустимая длина поля :label :param:1 символов!');
 		
 		$this->form = $form;
 	}

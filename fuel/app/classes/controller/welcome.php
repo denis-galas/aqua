@@ -47,7 +47,50 @@ class Controller_Welcome extends Controller_Template
 	public function action_contacts()
 	{
 		$this->template->title = 'Контакты';
-		$this->template->content = View::forge("welcome/contacts", array(), false);
+		$form = new ContactForm();
+		$form = $form->getForm();
+		if (Input::method() == 'POST') {
+			$form->validation()->run();
+			// if validated, login the user
+			if (!$form->validation()->error())
+			{
+				$subject = Input::post('subject');
+				$message = Input::post('message');
+				
+				$config = array(
+						'path' => DOCROOT.'assets/attaches',
+						'randomize' => true
+				);
+		
+				Upload::process($config);
+		
+				Upload::save();
+				$files = Upload::get_files();
+				$email = Email::forge();
+				$email->from('noreply@aqua.localhost', 'Aqua');
+				$email->to(array('galas2008@gmail.com'));
+				$email->subject($subject);
+				$email->html_body($message);
+				if (!empty($files)) {
+					$file = $files[0];
+					$email->attach($file['saved_to'].$file['saved_as'], false, null, null, $file['name']);
+					unlink($file['saved_to'].$file['saved_as']);
+				}
+				if ($email->send()) {
+					Session::set_flash('success', 'Ваше сообщение было успешно отправлено!');
+				} else {
+					Session::set_flash('error', 'Ваше сообщение не было отправлено, произошла какая-то ошибка!');
+				}
+				
+				Response::redirect('contacts');
+			}
+			
+			$form->repopulate();
+		}
+		
+		$this->template->content = View::forge("welcome/contacts", array(
+			'form' => $form,		
+		), false);
 	}
 	
 	public function action_gallery()
@@ -57,7 +100,6 @@ class Controller_Welcome extends Controller_Template
 		$category = '';
 		if ($this->param('category', 'all') != 'all') {
 			$category = Model_Fcategory::find($this->param('category'));
-			$category = $category->title;
 		}
 		
 		$this->template->content = View::forge("welcome/gallery", array(

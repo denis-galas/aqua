@@ -22,7 +22,7 @@
 		<?php echo $form?>
 		<div class="form-group">
 			<div class="controls">
-				<?php echo Form::submit('submit', 'Сохранить', $attributes = array('class' => "btn"))?>
+				<?php echo Form::submit('submit', 'Сохранить', $attributes = array('class' => "btn btn-primary"))?>
 			</div>
 		</div>
 	
@@ -32,26 +32,28 @@
 <?php echo Form::open(array('action' => '', 'method' => 'get', 'id' => "gallery_sort_form", 'style' => 'width: 200px;'));?>
 <?php echo Form::select('category_sort', Session::get('category_sort'), Model_Fcategory::returnArray(true), array('class' => 'form-control', 'style'=>'margin-top: 30px; margin-bottom: 10px;'))?>
 <?php echo Form::close();?>
-<ul class="list-group">
+
+<div id="gallery">
 	<?php if (count($photos) == 0):?>
-	<li href="#" class="list-group-item">
 		<h4 class="list-group-item-heading">В этой категории еще нет фотографий</h4>
-	</li>
 	<?php endif;?>
 	<?php foreach ($photos as $photo):?>
-	<li href="#" class="list-group-item">
+	<div class="gallery-item">
 		<a href="/admin/photoDelete?id=<?php echo $photo->id?>" class="pull-right delete"><span class="glyphicon glyphicon-remove"></span></a>
+		<a href="/admin/gallery?id=<?php echo $photo->id?>&edit=1" class="pull-right" style="margin-right: 10px;"><span class="glyphicon glyphicon-edit"></span></a>
 		<h4 class="list-group-item-heading"><?php echo $photo->title?> (<?php echo $photo->fcategory->title?>)</h4>
-		<p class="list-group-item-text"><?php echo Asset::img('gallery/thumbs/'.$photo->source, array('class' => 'pull-left'))?></p>
+		<p class="list-group-item-text"><?php echo Asset::img('gallery/thumbs/'.$photo->source, array())?></p>
 		<div class="clear"></div>
-	</li>
-  	<?php endforeach;?>
-</ul>
+	</div>
+	<?php endforeach;?>
+	<div class="clear"></div>
+</div>
 
 <script>
 $(function(){
 	$('#gallery_form').submit(function(){
-		$('#form_source').val($('#form_source_file').val());
+		if ($('#form_source_file').val())
+			$('#form_source').val($('#form_source_file').val());
 	});
 
 	$('.delete').click(function(){

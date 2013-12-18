@@ -11,62 +11,74 @@
 	<?php echo Asset::js('bootstrap.min.js'); ?>
 </head>
 <body>
+<script type="text/javascript">
+$(function(){
+	$('.dropdown').mouseover(function(){
+		$(this).addClass('open');
+	});
+	$('.dropdown').mouseout(function(){
+		$(this).removeClass('open');
+	});
+});
+</script>
+
 	<div id="wrap">
 		<div class="container">
-			<nav role="navigation" class="navbar navbar-inverse">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button data-target="#bs-example-navbar-collapse-9" data-toggle="collapse" class="navbar-toggle" type="button">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="/" class="navbar-brand"><?php echo Asset::img('home-hover.png', array())?></a>
-				</div>
-	
-				<?php $active_url = \Request::active()->route->translation;
-				if ($active_url == 'welcome/gallery') {
-					$active_url .= '/'.Request::active()->route->named_params['category'];
-				}
-				?>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
-						<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Прайсы</a></li>
-						
-						<?php $categories = Model_Fcategory::returnArray();?>
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Галлерея <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<?php foreach ($categories as $id => $category):?>
-								<li <?php if(stripos($active_url,'welcome/gallery/'.$id) !== false) echo "class='active'"?>><a href="/gallery/<?php echo $id?>"><?php echo $category?></a></li>
-								<?php endforeach;?>
-							</ul>
-						</li>
-						
-						<li <?php if(stripos($active_url,'contacts') !== false) echo "class='active'"?>><a href="/contacts">Контакты</a></li>
-						<?php if (Auth::check()):?>
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Администратор <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Управление:</li>
-								<li <?php if(stripos($active_url,'admin/prices') !== false) echo "class='active'"?>><a href="/admin/prices">Прайсами</a></li>
-								<li <?php if(stripos($active_url,'admin/slides') !== false) echo "class='active'"?>><a href="/admin/slides">Слайдшоу</a></li>
-								<li <?php if(stripos($active_url,'admin/categories') !== false) echo "class='active'"?>><a href="/admin/categories">Категориями</a></li>
-								<li <?php if(stripos($active_url,'admin/gallery') !== false) echo "class='active'"?>><a href="/admin/gallery">Галлереей</a></li>
-								<li class="divider"></li>
-								<li><a href="/admin/logout">Выход</a></li>
-							</ul>
-						</li>
-						<?php endif;?>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-				
+			<div class="container-inner">
+				<nav role="navigation" class="navbar navbar-inverse">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button data-target="#bs-example-navbar-collapse-9" data-toggle="collapse" class="navbar-toggle" type="button">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="/" class="navbar-brand"><?php echo Asset::img('home-hover.png', array())?></a>
+					</div>
+		
+					<?php $active_url = \Request::active()->route->translation;
+					if ($active_url == 'welcome/gallery') {
+						$active_url .= '/'.Request::active()->route->named_params['category'];
+					}
+					?>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
+							<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Прайсы</a></li>
+							
+							<?php $categories = Model_Fcategory::returnArray();?>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Галлерея <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<?php foreach ($categories as $id => $category):?>
+									<li <?php if(stripos($active_url,'welcome/gallery/'.$id) !== false) echo "class='active'"?>><a href="/gallery/<?php echo $id?>"><?php echo $category?></a></li>
+									<?php endforeach;?>
+								</ul>
+							</li>
+							
+							<li <?php if(stripos($active_url,'contacts') !== false) echo "class='active'"?>><a href="/contacts">Контакты</a></li>
+							<?php if (Auth::check()):?>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Администратор <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-header">Управление:</li>
+									<li <?php if(stripos($active_url,'admin/prices') !== false) echo "class='active'"?>><a href="/admin/prices">Прайсами</a></li>
+									<li <?php if(stripos($active_url,'admin/slides') !== false) echo "class='active'"?>><a href="/admin/slides">Слайдшоу</a></li>
+									<li <?php if(stripos($active_url,'admin/categories') !== false) echo "class='active'"?>><a href="/admin/categories">Категориями</a></li>
+									<li <?php if(stripos($active_url,'admin/gallery') !== false) echo "class='active'"?>><a href="/admin/gallery">Галлереей</a></li>
+									<li class="divider"></li>
+									<li><a href="/admin/logout">Выход</a></li>
+								</ul>
+							</li>
+							<?php endif;?>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
 				<?php 
-				$slides = Model_Slide::find('all');
-				if (count($slides) == 0):
+					$slides = Model_Slide::find('all');
+					if (count($slides) > 0 && stripos($active_url,'admin') === false):
 				?>
 				<div data-ride="carousel" class="carousel slide" id="carousel-slide">
 					<ol class="carousel-indicators">
@@ -93,13 +105,10 @@
 					</a>
 				</div>
 				<?php endif;?>
-			</nav>
-			
-			
-						
-			
-			<div class="raw content">
-				<?php echo $content; ?>
+				
+				<div class="raw content">
+					<?php echo $content; ?>
+				</div>
 			</div>
 		</div>
 	</div>

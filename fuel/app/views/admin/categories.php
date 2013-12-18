@@ -22,7 +22,7 @@
 		<?php echo $form?>
 		<div class="form-group">
 			<div class="controls">
-				<?php echo Form::submit('submit', 'Сохранить', $attributes = array('class' => "btn"))?>
+				<?php echo Form::submit('submit', 'Сохранить', $attributes = array('class' => "btn btn-primary"))?>
 			</div>
 		</div>
 	

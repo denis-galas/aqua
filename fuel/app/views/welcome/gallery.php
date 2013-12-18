@@ -4,7 +4,8 @@
 <?php if (count($photos) == 0):?>
 <h4 style="text-align: center;">В этой категории еще нет фотографий</h4>
 <?php else:?>
-<h4 style="text-align: center;"><?php echo $category?></h4>
+<h4 style="text-align: center;"><?php echo $category->title?></h4>
+<p style="text-align: center;"><?php echo $category->description?></p>
 <?php endif;?>
 
 <div id="gallery">
@@ -16,6 +17,7 @@
 		</a>
 	</div>
 	<?php endforeach;?>
+	<div class="clear"></div>
 </div>
 
 <div class="clear"></div>

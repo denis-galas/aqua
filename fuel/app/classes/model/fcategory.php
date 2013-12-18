@@ -45,7 +45,7 @@ class Model_Fcategory extends Orm\Model
 			$cat_arr['all'] = 'Все категории';
 		}
 		foreach ($categories as $category) {
-			$cat_arr[$category->id] = $category->title;  
+			$cat_arr[(int) $category->id] = $category->title;  
 		}
 		
 		return $cat_arr;

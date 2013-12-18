@@ -19,6 +19,7 @@ Autoloader::add_classes(array(
 	'AdminSlideForm' => APPPATH.'classes/form/admin_slide.php',
 	'AdminGalleryForm' => APPPATH.'classes/form/admin_gallery.php',
 	'AdminPriceForm' => APPPATH.'classes/form/admin_price.php',
+	'ContactForm' => APPPATH.'classes/form/contact.php',
 ));
 
 // Register the autoloader
