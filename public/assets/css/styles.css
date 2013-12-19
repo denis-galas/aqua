@@ -139,4 +139,17 @@ body {
 .carousel-caption {
 	background: #222;
 	opacity:0.8;
+	bottom: 0px !important;
+	left: 0px;
+	right: 0px;
+	padding-left: 150px;
+	padding-right: 150px;
+}
+
+.carousel-caption h3{
+	margin-top: 0px;
+}
+
+.carousel-indicators {
+	bottom: 0px !important;
 }

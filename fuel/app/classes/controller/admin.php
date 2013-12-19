@@ -209,10 +209,10 @@ class Controller_Admin extends Controller_Template
 							unlink(DOCROOT.'assets/img/slides/thumbs/'.$slide->source);
 						}
 						
-						$o_width = 1170;
-						$o_height = 450;
-						$t_width = 234;
-						$t_height = 90;
+						$o_width = 1140;
+						$o_height = 350;
+						$t_width = 285;
+						$t_height = 88;
 						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
 						$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
 						Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
@@ -317,8 +317,8 @@ class Controller_Admin extends Controller_Template
 							unlink(DOCROOT.'assets/img/gallery/thumbs/'.$gallery->source);
 						}
 					
-						$o_width = 1024;
-						$o_height = 768;
+						$o_width = 800;
+						$o_height = 600;
 						$t_width = 280;
 						$t_height = 210;
 						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];

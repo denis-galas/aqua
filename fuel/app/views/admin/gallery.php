@@ -1,4 +1,5 @@
 <div>
+	<h3>Управление галлереей</h3>
 	<?php if ($message = Session::get_flash('success')):?>
 		<div class="alert alert-success">
 			<?php echo $message;?> 

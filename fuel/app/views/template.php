@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<title>Аквариумистика - <?php echo $title?></title>
 	<?php echo Asset::css('bootstrap.min.css'); ?>
 	<?php //echo Asset::css('bootstrap-theme.min.css'); ?>
@@ -28,7 +30,7 @@ $(function(){
 				<nav role="navigation" class="navbar navbar-inverse">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button data-target="#bs-example-navbar-collapse-9" data-toggle="collapse" class="navbar-toggle" type="button">
+						<button data-target="#navbar" data-toggle="collapse" class="navbar-toggle" type="button">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -43,7 +45,7 @@ $(function(){
 					}
 					?>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
+					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
 							<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Прайсы</a></li>
@@ -81,11 +83,13 @@ $(function(){
 					if (count($slides) > 0 && stripos($active_url,'admin') === false):
 				?>
 				<div data-ride="carousel" class="carousel slide" id="carousel-slide">
+					<?php /*?>
 					<ol class="carousel-indicators">
 						<?php $i = 0; foreach ($slides as $slide):?>
 						<li class="<?php echo $i == 0 ? 'active' : ''?>" data-slide-to="<?php echo $i?>" data-target="#carousel-slide"></li>
 						<?php $i++; endforeach;?>
 					</ol>
+					<?php */?>
 					<div class="carousel-inner">
 						<?php $i = 0; foreach ($slides as $slide):?>
 						<div class="item <?php echo $i == 0 ? 'active' : ''?>">
