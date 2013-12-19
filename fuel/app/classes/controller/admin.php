@@ -317,8 +317,8 @@ class Controller_Admin extends Controller_Template
 							unlink(DOCROOT.'assets/img/gallery/thumbs/'.$gallery->source);
 						}
 					
-						$o_width = 800;
-						$o_height = 600;
+						$o_width = 640;
+						$o_height = 480;
 						$t_width = 280;
 						$t_height = 210;
 						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
