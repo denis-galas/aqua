@@ -29,7 +29,7 @@ body {
 /* 	margin-top: 25px; */
 	border: none;
 /* 	box-shadow: 0 0 15px 3px #999; */
-	border-radius: 0px;
+	border-radius: 4px 4px 0 0;
 	background-image: linear-gradient(to bottom, #3C3C3C 0px, #222222 100%);
 	margin-bottom: 0px;
 }
@@ -107,11 +107,16 @@ body {
 
 #gallery .gallery-item {
     display: inline;
-    margin: 0 39px 25px 39px;
+    margin: 0 34px 25px 39px;
     margin-bottom: 40px;
     float: left;
-    width: 280px;
+    width: 200px;
 /*     border: 1px solid #EEEEEE; */
+}
+
+#gallery .gallery-item img{
+	width: 200px;
+	height: 150px;
 }
 
 #gallery .gallery-item:hover {
@@ -165,6 +170,16 @@ body {
 .side-content {
 	float: left;
 	width: 874px;
+}
+
+#head {
+	height: 120px;
+}
+
+#head .head-logo {
+	width: 100px;
+	height: 100px;
+	padding-top: 10px;
 }
 
 /* .carousel-caption { */

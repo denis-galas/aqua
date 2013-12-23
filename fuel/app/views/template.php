@@ -33,6 +33,14 @@ $(function(){
 
 	<div id="wrap">
 		<div class="container">
+			<div id="head">
+				<address class="pull-right">
+					Тел. (123) 456-7890<br>
+					Тел. (123) 456-7890<br>
+					Тел. (123) 456-7890
+				</address>
+				<?php echo Asset::img('2636a1598b4db079bdf3e517e5c61b5e.png', array('class' => 'head-logo'))?>
+			</div>
 			<div class="container-inner">
 				<nav role="navigation" class="navbar navbar-inverse">
 					<!-- Brand and toggle get grouped for better mobile display -->

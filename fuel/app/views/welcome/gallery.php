@@ -10,6 +10,7 @@
 	<?php if (count($photos) == 0):?>
 		<h4 style="text-align: center;">В этой категории еще нет фотографий</h4>
 	<?php endif;?>
+	<?php for($i = 0; $i < 10; $i++):?>
 	<?php foreach ($photos as $photo):?>
 	<div class="gallery-item">
 		<a title="<?php echo $photo->title?>" href="/assets/img/gallery/<?php echo $photo->source?>">
@@ -18,6 +19,7 @@
 		</a>
 	</div>
 	<?php endforeach;?>
+	<?php endfor;?>
 	<div class="clear"></div>
 </div>
 
