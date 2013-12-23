@@ -6,6 +6,7 @@ fuel/app/cache/*/*
 fuel/app/config/db.php
 public/assets/img/slides
 public/assets/img/gallery
+public/assets/img/news
 public/assets/attaches
 public/assets/prices
 fuel/app/config/development/migrations.php
