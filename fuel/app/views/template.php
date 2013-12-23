@@ -11,6 +11,7 @@
 	
 	<?php echo Asset::js('jquery-1.10.2.min.js'); ?>
 	<?php echo Asset::js('bootstrap.min.js'); ?>
+	<?php echo Asset::js('jcarousellite_1.0.1.min.js'); ?>
 </head>
 <body>
 <script type="text/javascript">
@@ -20,6 +21,12 @@ $(function(){
 	});
 	$('.dropdown').mouseout(function(){
 		$(this).removeClass('open');
+	});
+
+	$('#carousel-slide').jCarouselLite({
+	    auto: 2000,
+	    speed: 2000,
+	    vertical: true,
 	});
 });
 </script>
@@ -48,7 +55,7 @@ $(function(){
 					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
-							<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Прайсы</a></li>
+							<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Скачать прайс</a></li>
 							
 							<?php $categories = Model_Fcategory::returnArray();?>
 							<li class="dropdown">
@@ -60,12 +67,14 @@ $(function(){
 								</ul>
 							</li>
 							
-							<li <?php if(stripos($active_url,'contacts') !== false) echo "class='active'"?>><a href="/contacts">Контакты</a></li>
+							<li <?php if(stripos($active_url,'contact') !== false) echo "class='active'"?>><a href="/contact">Сделать заказ</a></li>
+							<li <?php if(stripos($active_url,'about') !== false) echo "class='active'"?>><a href="/about">О нас</a></li>
 							<?php if (Auth::check()):?>
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Администратор <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-header">Управление:</li>
+									<li <?php if(stripos($active_url,'admin/news') !== false) echo "class='active'"?>><a href="/admin/news">Новостями</a></li>
 									<li <?php if(stripos($active_url,'admin/prices') !== false) echo "class='active'"?>><a href="/admin/prices">Прайсами</a></li>
 									<li <?php if(stripos($active_url,'admin/slides') !== false) echo "class='active'"?>><a href="/admin/slides">Слайдшоу</a></li>
 									<li <?php if(stripos($active_url,'admin/categories') !== false) echo "class='active'"?>><a href="/admin/categories">Категориями</a></li>
@@ -78,40 +87,33 @@ $(function(){
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</nav>
-				<?php 
-					$slides = Model_Slide::find('all');
-					if (count($slides) > 0 && stripos($active_url,'admin') === false):
-				?>
-				<div data-ride="carousel" class="carousel slide" id="carousel-slide">
-					<?php /*?>
-					<ol class="carousel-indicators">
-						<?php $i = 0; foreach ($slides as $slide):?>
-						<li class="<?php echo $i == 0 ? 'active' : ''?>" data-slide-to="<?php echo $i?>" data-target="#carousel-slide"></li>
-						<?php $i++; endforeach;?>
-					</ol>
-					<?php */?>
-					<div class="carousel-inner">
-						<?php $i = 0; foreach ($slides as $slide):?>
-						<div class="item <?php echo $i == 0 ? 'active' : ''?>">
-							<?php echo Asset::img('slides/'.$slide->source, array())?>
-							<div class="carousel-caption">
-								<h3><?php echo $slide->title?></h3>
-								<p><?php echo $slide->description?></p>
-							</div>
-						</div>
-						<?php $i++; endforeach;?>
-					</div>
-					<a data-slide="prev" href="#carousel-slide" class="left carousel-control">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a data-slide="next" href="#carousel-slide" class="right carousel-control">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-				</div>
-				<?php endif;?>
-				
+
 				<div class="raw content">
+					<?php
+						$slides = Model_Slide::find('all');
+						if (count($slides) > 0 && stripos($active_url,'admin') === false && stripos($active_url,'welcome/gallery') === false):
+					?>
+					<div id="carousel-slide-wrapper">
+						<h4>Новинки</h4>
+						<div id="carousel-slide">
+							<ul>
+								<?php foreach ($slides as $slide):?>
+								<li class="item">
+									<div class="item-inner">
+										<?php echo Asset::img('slides/'.$slide->source, array())?>
+										<div class="slide-caption">
+											<h5><?php echo $slide->title?></h5>
+											<p><?php echo $slide->description?></p>
+										</div>
+									</div>
+								</li>
+								<?php endforeach;?>
+							</ul>
+						</div>
+					</div>
+					<?php endif;?>
 					<?php echo $content; ?>
+					<div class="clear"></div>
 				</div>
 			</div>
 		</div>

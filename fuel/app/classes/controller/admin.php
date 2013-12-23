@@ -206,17 +206,16 @@ class Controller_Admin extends Controller_Template
 						
 						if (Input::post('source') != $slide->source && Input::get('edit')) {
 							unlink(DOCROOT.'assets/img/slides/'.$slide->source);
-							unlink(DOCROOT.'assets/img/slides/thumbs/'.$slide->source);
 						}
 						
-						$o_width = 1140;
-						$o_height = 350;
-						$t_width = 285;
-						$t_height = 88;
+						$o_width = 160;
+						$o_height = 120;
+						//$t_width = 160;
+						//$t_height = 120;
 						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
-						$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
+						//$thumb_files = $files[0]['saved_to'].'thumbs/'.$files[0]['saved_as'];
 						Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
-						Image::load($filepath)->resize($t_width, $t_height, false)->save($thumb_files);
+						//Image::load($filepath)->resize($t_width, $t_height, false)->save($thumb_files);
 					}
 				
 					$fields = $form->validated();
@@ -258,7 +257,7 @@ class Controller_Admin extends Controller_Template
 		$id = Input::get('id');
 		$slide = Model_Slide::find($id);
 		unlink(DOCROOT.'assets/img/slides/'.$slide->source);
-		unlink(DOCROOT.'assets/img/slides/thumbs/'.$slide->source);
+		//unlink(DOCROOT.'assets/img/slides/thumbs/'.$slide->source);
 
 		$slide->delete();
 	
@@ -459,5 +458,103 @@ class Controller_Admin extends Controller_Template
 		$price->delete();
 	
 		Response::redirect('admin/prices');
+	}
+	
+	public function action_news()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+		$this->template->title = 'Управление новостями';
+	
+		if (Input::get('edit')) {
+			$news = Model_News::find(Input::get('id'));
+		}
+		if (!isset($news) || !$news) {
+			$news = new Model_News();
+		}
+	
+		$form = new AdminNewsForm();
+		$form = $form->getForm();
+		$form->populate($news, true);
+	
+		if (Input::method() == 'POST') {
+			$form->validation()->run();
+			// if validated, login the user
+			if (!$form->validation()->error())
+			{
+				$config = array(
+						'path' => DOCROOT.'assets/img/news',
+						'randomize' => true,
+						'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
+				);
+	
+				Upload::process($config);
+	
+	
+				if (Upload::is_valid() || Input::post('source') == $news->source)
+				{
+					// save them according to the config
+					$old_source = $news->source;
+					if ($_FILES['source_file']['name'] && (Input::post('source') != $old_source || !Input::get('edit'))) {
+						Upload::save();
+	
+						$files = Upload::get_files();
+	
+						if ($news->source && Input::post('source') != $news->source && Input::get('edit')) {
+							unlink(DOCROOT.'assets/img/news/'.$news->source);
+						}
+	
+						$o_width = 160;
+						$o_height = 120;
+						$filepath = $files[0]['saved_to'].$files[0]['saved_as'];
+						Image::load($filepath)->resize($o_width, $o_height, false)->save($filepath);
+					}
+	
+					$fields = $form->validated();
+					$news->from_array($fields);
+					if ($_FILES['source_file']['name'] && (Input::post('source') != $old_source || !Input::get('edit'))) {
+						$news->source = $files[0]['saved_as'];
+					}
+					$news->save();
+	
+					if (!Input::get('edit')) {
+						Session::set_flash('success', 'Новость добавлена успешно!');
+					} else {
+						Session::set_flash('success', 'Новость изменена успешно!');
+					}
+					Response::redirect('admin/news');
+				} else {
+					foreach (Upload::get_errors() as $file)
+					{
+						$error = $file['errors'][0]['message'];
+					}
+					Session::set_flash('error', $error);
+				}
+			}
+		}
+	
+		$news = Model_News::find('all');
+		$this->template->content = View::forge("admin/news", array(
+				'form' => $form,
+				'news' => $news,
+		), false);
+	}
+	
+	public function action_newsDelete()
+	{
+		if (!Auth::check()) {
+			Response::redirect('');
+		}
+	
+		$id = Input::get('id');
+		$news = Model_News::find($id);
+		if ($news->source) {
+			unlink(DOCROOT.'assets/img/news/'.$news->source);
+		}
+	
+		$news->delete();
+	
+		Response::redirect('admin/news');
 	}
 }

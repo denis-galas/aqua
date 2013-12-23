@@ -31,7 +31,10 @@ class Controller_Welcome extends Controller_Template
 	public function action_index()
 	{
 		$this->template->title = 'Главная';
-		$this->template->content = View::forge("welcome/index", array(), false);
+		$news = Model_News::find('all');
+		$this->template->content = View::forge("welcome/index", array(
+			'news' => $news,		
+		), false);
 	}
 	
 	public function action_prices()
@@ -44,9 +47,16 @@ class Controller_Welcome extends Controller_Template
 		), false);
 	}
 	
-	public function action_contacts()
+	public function action_about()
 	{
-		$this->template->title = 'Контакты';
+		$this->template->title = 'О нас';
+		
+		$this->template->content = View::forge("welcome/about", array(), false);
+	}
+	
+	public function action_contact()
+	{
+		$this->template->title = 'Сделать заказ';
 		$form = new ContactForm();
 		$form = $form->getForm();
 		if (Input::method() == 'POST') {
@@ -56,14 +66,14 @@ class Controller_Welcome extends Controller_Template
 			{
 				$subject = Input::post('subject');
 				$message = Input::post('message');
-				
+	
 				$config = array(
 						'path' => DOCROOT.'assets/attaches',
 						'randomize' => true
 				);
-		
+	
 				Upload::process($config);
-		
+	
 				Upload::save();
 				$files = Upload::get_files();
 				$email = Email::forge();
@@ -77,19 +87,19 @@ class Controller_Welcome extends Controller_Template
 					unlink($file['saved_to'].$file['saved_as']);
 				}
 				if ($email->send()) {
-					Session::set_flash('success', 'Ваше сообщение было успешно отправлено!');
+					Session::set_flash('success', 'Ваш заказ был успешно отправлен!');
 				} else {
-					Session::set_flash('error', 'Ваше сообщение не было отправлено, произошла какая-то ошибка!');
+					Session::set_flash('error', 'Ваш заказ не был отправлен, произошла какая-то ошибка!');
 				}
-				
-				Response::redirect('contacts');
+	
+				Response::redirect('contact');
 			}
-			
+				
 			$form->repopulate();
 		}
-		
-		$this->template->content = View::forge("welcome/contacts", array(
-			'form' => $form,		
+	
+		$this->template->content = View::forge("welcome/contact", array(
+				'form' => $form,
 		), false);
 	}
 	

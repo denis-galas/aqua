@@ -1,5 +1,5 @@
 <div>
-	<h3>Управление слайдшоу</h3>
+	<h3>Управление новостями</h3>
 	<?php if ($message = Session::get_flash('success')):?>
 		<div class="alert alert-success">
 			<?php echo $message;?> 
@@ -31,12 +31,15 @@
 </div>
 
 <ul class="list-group">
-	<?php foreach ($slides as $slide):?>
+	<?php foreach ($news as $item):?>
 	<li href="#" class="list-group-item">
-		<a href="/admin/slideDelete?id=<?php echo $slide->id?>" class="pull-right delete"><span class="glyphicon glyphicon-remove"></span></a>
-		<a href="/admin/slides?id=<?php echo $slide->id?>&edit=1" class="pull-right" style="margin-right: 10px;"><span class="glyphicon glyphicon-edit"></span></a>
-		<h4 class="list-group-item-heading"><?php echo $slide->title?></h4>
-		<p class="list-group-item-text"><?php echo Asset::img('slides/'.$slide->source, array('class' => 'pull-left', 'style' => 'margin-right: 15px;'))?> <?php echo $slide->description?></p>
+		<a href="/admin/newsDelete?id=<?php echo $item->id?>" class="pull-right delete"><span class="glyphicon glyphicon-remove"></span></a>
+		<a href="/admin/news?id=<?php echo $item->id?>&edit=1" class="pull-right" style="margin-right: 10px;"><span class="glyphicon glyphicon-edit"></span></a>
+		<?php if (Asset::find_file($item->source, 'img','news/')):?>
+		<?php echo Asset::img('news/'.$item->source, array('class' => 'pull-left', 'style' => 'margin-right: 15px;'))?>
+		<?php endif;?>
+		<h4 class="list-group-item-heading"><?php echo $item->title?></h4>
+		<p class="list-group-item-text"><?php echo $item->description?></p>
 		<div class="clear"></div>
 	</li>
   	<?php endforeach;?>
@@ -50,7 +53,7 @@ $(function(){
 	});
 
 	$('.delete').click(function(){
-		var conf = confirm('Вы уверены, что хотите удалить слайд?');
+		var conf = confirm('Вы уверены, что хотите удалить новость?');
 		if (!conf) {
 			return false;
 		}

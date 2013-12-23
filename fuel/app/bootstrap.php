@@ -20,6 +20,7 @@ Autoloader::add_classes(array(
 	'AdminGalleryForm' => APPPATH.'classes/form/admin_gallery.php',
 	'AdminPriceForm' => APPPATH.'classes/form/admin_price.php',
 	'ContactForm' => APPPATH.'classes/form/contact.php',
+	'AdminNewsForm' => APPPATH.'classes/form/admin_news.php',
 ));
 
 // Register the autoloader
