@@ -34,7 +34,7 @@ $(function(){
 	<div id="wrap">
 		<div class="container">
 			<div id="head">
-				<address class="pull-right">
+				<address class="pull-right head-address">
 					Тел. (123) 456-7890<br>
 					Тел. (123) 456-7890<br>
 					Тел. (123) 456-7890

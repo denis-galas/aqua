@@ -107,7 +107,7 @@ body {
 
 #gallery .gallery-item {
     display: inline;
-    margin: 0 34px 25px 39px;
+    margin: 0 34px 25px 34px;
     margin-bottom: 40px;
     float: left;
     width: 200px;
@@ -180,6 +180,11 @@ body {
 	width: 100px;
 	height: 100px;
 	padding-top: 10px;
+}
+
+#head .head-address {
+	padding-top: 10px;
+	color: #FFFFFF;
 }
 
 /* .carousel-caption { */
