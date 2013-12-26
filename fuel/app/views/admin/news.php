@@ -1,3 +1,5 @@
+<?php echo Asset::js('tinymce/tinymce.min.js'); ?>
+
 <div>
 	<h3>Управление новостями</h3>
 	<?php if ($message = Session::get_flash('success')):?>
@@ -47,6 +49,20 @@
 
 <script>
 $(function(){
+	tinymce.init({
+		plugins: "link, searchreplace, table",
+	    selector: "#form_description",
+	    language : 'ru',
+	    menu: { 
+	        file: {title: 'File', items: 'newdocument'}, 
+	        edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall'}, 
+	        format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'}, 
+	    },
+	    statusbar : false,
+	    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright | link table | searchreplace",
+	 });
+		
+	
 	$('#slides_form').submit(function(){
 		if ($('#form_source_file').val())
 			$('#form_source').val($('#form_source_file').val());

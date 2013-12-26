@@ -27,8 +27,8 @@ class AdminSlideForm extends BaseForm {
 		
 		$form->add(
 				'description', 'Описание',
-				array('type' => 'textarea', 'class' => 'form-control')
-		)->add_rule('max_length', 5000);
+				array('type' => 'text', 'class' => 'form-control')
+		)->add_rule('max_length', 255);
 		
 		$form->add(
 				'source_file', 'Слайд',

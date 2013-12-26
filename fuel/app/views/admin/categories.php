@@ -1,3 +1,5 @@
+<?php echo Asset::js('tinymce/tinymce.min.js'); ?>
+
 <div>
 	<h3>Управление категориями</h3>
 	<?php if ($message = Session::get_flash('success')):?>
@@ -43,6 +45,19 @@
 
 <script>
 $(function(){
+	tinymce.init({
+		plugins: "link, searchreplace, table",
+	    selector: "#form_description",
+	    language : 'ru',
+	    menu: { 
+	        file: {title: 'File', items: 'newdocument'}, 
+	        edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall'}, 
+	        format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'}, 
+	    },
+	    statusbar : false,
+	    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright | link table | searchreplace",
+	 });
+	
 	$('.delete').click(function(){
 		var conf = confirm('Вы уверены, что хотите удалить категорию?\nУдаление категории приведет к удалению всех фотографий из галлереи, прикрепленных к данной категории.');
 		if (!conf) {

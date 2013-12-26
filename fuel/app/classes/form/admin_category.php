@@ -22,7 +22,7 @@ class AdminCategoryForm extends BaseForm {
 		
 		$form->add(
 				'description', 'Описание',
-				array('type' => 'textarea', 'class' => 'form-control')
+				array('type' => 'textarea', 'class' => 'form-control', 'rows' => '6')
 		)->add_rule('max_length', 5000);
 		
 		$val = Validation::instance('categoryform');
