@@ -28,8 +28,7 @@ class AdminNewsForm extends BaseForm {
 		$form->add(
 				'description', 'Описание',
 				array('type' => 'textarea', 'class' => 'form-control', 'rows' => '6')
-		)->add_rule('required')
-		->add_rule('max_length', 5000);
+		)->add_rule('max_length', 5000);
 		
 		$form->add(
 				'source_file', 'Слайд',
