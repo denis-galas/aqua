@@ -14,7 +14,7 @@
 	<?php foreach ($photos as $photo):?>
 	<div class="gallery-item">
 		<a title="<?php echo $photo->title?>" href="/assets/img/gallery/<?php echo $photo->source?>">
-			<?php echo Asset::img('gallery/thumbs/'.$photo->source, array())?>
+			<?php echo Asset::img('gallery/thumbs/'.$photo->source, array('alt' => $photo->title))?>
 			<h5 style="text-align: center;"><?php echo $photo->title?></h5>
 		</a>
 	</div>
