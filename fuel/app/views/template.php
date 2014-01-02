@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<title>Аквариумистика - <?php echo $title?></title>
+	<title>Аквариумная рыба оптом - <?php echo $title?></title>
 	<?php echo Asset::css('bootstrap.min.css'); ?>
 	<?php //echo Asset::css('bootstrap-theme.min.css'); ?>
 	<?php echo Asset::css('styles.css'); ?>
@@ -40,7 +40,7 @@ $(function(){
 					<br>
 					Украина, г. Харьков
 				</address>
-				<?php //echo Asset::img('2636a1598b4db079bdf3e517e5c61b5e.png', array('class' => 'head-logo pull-left'))?>
+				<?php echo Asset::img('fish_logo-140x140-to-title.png', array('class' => 'head-logo pull-left'))?>
 				<div id="head-title">АКВАРИУМНАЯ РЫБА ОПТОМ</div>
 			</div>
 			<div class="container-inner">
