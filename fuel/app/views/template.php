@@ -35,11 +35,13 @@ $(function(){
 		<div class="container">
 			<div id="head">
 				<address class="pull-right head-address">
-					Тел. (123) 456-7890<br>
-					Тел. (123) 456-7890<br>
-					Тел. (123) 456-7890
+					Тел. +38 (063) 1333-777<br>
+					Тел. +38 (066) 1333-777<br>
+					<br>
+					Украина, г. Харьков
 				</address>
-				<?php echo Asset::img('2636a1598b4db079bdf3e517e5c61b5e.png', array('class' => 'head-logo'))?>
+				<?php //echo Asset::img('2636a1598b4db079bdf3e517e5c61b5e.png', array('class' => 'head-logo pull-left'))?>
+				<div id="head-title">АКВАРИУМНАЯ РЫБА ОПТОМ</div>
 			</div>
 			<div class="container-inner">
 				<nav role="navigation" class="navbar navbar-inverse">
@@ -128,14 +130,23 @@ $(function(){
 	</div>
 		
 	<div id="footer">
-		<hr/>
+		<div id="foot-line"></div>
 		<div class="container">
 			<div class="foot-inside">
-				<div class="pull-right">Copyright (c) 2013</div>
-				<address>
-					Тел. (123) 456-7890<br>
-					Тел. (123) 456-7890
+				<address class="pull-right">
+					Тел. +38 (063) 1333-777<br>
+					Тел. +38 (066) 1333-777<br>
+					<br>
+					Украина, г. Харьков
 				</address>
+				<div>
+					<ul>
+						<li>Пресноводные ракообразные</li>
+						<li>Улитки</li>
+						<li>Прудовая рыба</li>
+						<li>Террариумистика</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

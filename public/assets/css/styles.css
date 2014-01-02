@@ -21,7 +21,7 @@ html, body {
 
 body {
 /* 	background: #f3f3f3 url('../img/bg-gradient-5.jpg') no-repeat; */
-	background: #4686AC;
+	background: #202f5a;
 	background-position:center top;
 }
 
@@ -75,6 +75,7 @@ body {
 	-webkit-box-shadow: 0 3px 7px #444 inset !important;
     box-shadow: 0 3px 7px #444 inset !important;
     background: none repeat scroll 0 0 #4686AC !important;
+    font-weight: bold;
 }
 
 .nav a:hover, .nav a:focus {
@@ -171,4 +172,35 @@ body {
 #head .head-address {
 	padding-top: 10px;
 	color: #FFFFFF;
+}
+
+#head #head-title {
+	color: #FFF;
+	padding: 5px 50px;
+	font-size: 45px;
+	margin-top: 15px;
+	background: blue;
+	float: left;
+	font-weight: bold;
+	font-family: Arial;
+	background-image: -ms-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -moz-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -o-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #202f5a), color-stop(1, #52BCE6));
+	background-image: -webkit-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: linear-gradient(to left, #202f5a 0%, #52BCE6 100%);
+}
+
+#footer #foot-line {
+	height: 1px;
+	background-image: -ms-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -moz-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -o-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #202f5a), color-stop(1, #52BCE6));
+	background-image: -webkit-linear-gradient(right, #202f5a 0%, #52BCE6 100%);
+	background-image: linear-gradient(to left, #202f5a 0%, #52BCE6 100%);
+}
+
+.foot-inside ul {
+	padding-left: 15px;
 }
