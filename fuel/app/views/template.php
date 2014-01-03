@@ -40,8 +40,8 @@ $(function(){
 					<br>
 					Украина, г. Харьков
 				</address>
-				<?php echo Asset::img('fish_logo-140x140-to-title.png', array('class' => 'head-logo pull-left'))?>
-				<div id="head-title">АКВАРИУМНАЯ РЫБА ОПТОМ</div>
+				
+				<div id="head-title"><?php echo Asset::img('fish3-logo.png', array('class' => 'head-logo pull-left'))?>АКВАРИУМНАЯ РЫБА ОПТОМ</div>
 			</div>
 			<div class="container-inner">
 				<nav role="navigation" class="navbar navbar-inverse">
