@@ -37,11 +37,11 @@ $(function(){
 				<address class="pull-right head-address">
 					Тел. +38 (063) 1333-777<br>
 					Тел. +38 (066) 1333-777<br>
-					<br>
+					jefff77@rambler.ru<br>
 					Украина, г. Харьков
 				</address>
 				
-				<div id="head-title"><?php echo Asset::img('fish3-logo.png', array('class' => 'head-logo pull-left'))?>АКВАРИУМНАЯ РЫБА ОПТОМ</div>
+				<div id="head-title"><?php //echo Asset::img('fish3-logo.png', array('class' => 'head-logo pull-left'))?>АКВАРИУМНАЯ РЫБА ОПТОМ</div>
 			</div>
 			<div class="container-inner">
 				<nav role="navigation" class="navbar navbar-inverse">
@@ -136,7 +136,7 @@ $(function(){
 				<address class="pull-right">
 					Тел. +38 (063) 1333-777<br>
 					Тел. +38 (066) 1333-777<br>
-					<br>
+					jefff77@rambler.ru<br>
 					Украина, г. Харьков
 				</address>
 				<div>
