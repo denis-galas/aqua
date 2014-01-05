@@ -1,6 +1,4 @@
 <div class="home-content side-content">
-	<h1>Главная</h1>
-	
 	<ul class="list-group">
 		<?php foreach ($news as $item):?>
 		<li href="#" class="list-group-item">
