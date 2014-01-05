@@ -89,10 +89,10 @@ return array(
 		 * SMTP settings
 		 */
 		'smtp'	=> array(
-			'host'		=> 'ssl://smtp.gmail.com',
-			'port'		=> 465,
-			'username'	=> 'galas2008@gmail.com',
-			'password'	=> 'denispass90',
+			'host'		=> 'mail.labeo.com.ua',
+// 			'port'		=> 465,
+			'username'	=> 'admin@mail.labeo.com.ua',
+			'password'	=> 'flvbygfhjkm',
 			'timeout'	=> 5,
 		),
 
