@@ -77,8 +77,8 @@ class Controller_Welcome extends Controller_Template
 				Upload::save();
 				$files = Upload::get_files();
 				$email = Email::forge();
-				$email->from('noreply@mail.labeo.com.ua', 'Aqua');
-				$email->to(array('galas2008@gmail.com'));
+				$email->from('noreply@mail.labeo.com.ua', 'labeo.com.ua');
+				$email->to(array('galas2008@gmail.com', 'jefff77@rambler.ru'));
 				$email->subject($subject);
 				$email->html_body($message);
 				if (!empty($files)) {
