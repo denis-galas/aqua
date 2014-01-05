@@ -91,8 +91,8 @@ return array(
 		'smtp'	=> array(
 			'host'		=> 'mail.labeo.com.ua',
 // 			'port'		=> 465,
-			'username'	=> 'admin@mail.labeo.com.ua',
-			'password'	=> 'flvbygfhjkm',
+			'username'	=> 'noreply@mail.labeo.com.ua',
+			'password'	=> 'noreply',
 			'timeout'	=> 5,
 		),
 
