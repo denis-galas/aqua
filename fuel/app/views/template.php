@@ -78,6 +78,7 @@ $(function(){
 						<ul class="nav navbar-nav">
 							<li <?php if(stripos($active_url,'index') !== false) echo "class='active'"?>><a href="/">Главная</a></li>
 							<li <?php if(stripos($active_url,'welcome/prices') !== false) echo "class='active'"?>><a href="/prices">Скачать прайс</a></li>
+							<li <?php if(stripos($active_url,'welcome/news') !== false) echo "class='active'"?>><a href="<?php echo Router::get('news')?>">Новости</a></li>
 							
 							<?php $categories = Model_Fcategory::returnArray();?>
 							<li class="dropdown">

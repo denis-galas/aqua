@@ -31,9 +31,18 @@ class Controller_Welcome extends Controller_Template
 	public function action_index()
 	{
 		$this->template->title = 'Главная';
-		$news = Model_News::find('all', array('order_by' => array('id' => 'desc')));
+		$news = Model_News::getAll(true);
 		$this->template->content = View::forge("welcome/index", array(
 			'news' => $news,		
+		), false);
+	}
+	
+	public function action_news()
+	{
+		$this->template->title = 'Новости';
+		$news = Model_News::getAll();
+		$this->template->content = View::forge("welcome/index", array(
+				'news' => $news,
 		), false);
 	}
 	
