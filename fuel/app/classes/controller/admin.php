@@ -512,6 +512,7 @@ class Controller_Admin extends Controller_Template
 					}
 	
 					$fields = $form->validated();
+					$fields['on_main'] = $fields['on_main'] ? 1 : 0; 
 					$news->from_array($fields);
 					if ($_FILES['source_file']['name'] && (Input::post('source') != $old_source || !Input::get('edit'))) {
 						$news->source = $files[0]['saved_as'];
