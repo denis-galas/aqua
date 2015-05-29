@@ -4,6 +4,7 @@ use Fuel\Core\Input;
 
 class Controller_Admin extends Controller_Template
 {
+	
 	/**
 	 * signup page
 	 */
